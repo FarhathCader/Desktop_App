@@ -1,0 +1,140 @@
+﻿<Window x:Class="Group_Project.View.StudentMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Group_Project.View"
+        xmlns:VM="clr-namespace:Group_Project.ViewModel"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+       
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"         
+        Title="StudentMenuWindow" Height="750" Width="1000">
+    <Grid Margin="20">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="1" Opacity="0.4"/>
+        </Grid.Effect>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.4*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Left Section-->
+        <Border Background= "#663399 "  CornerRadius="10 0 0 10" ClipToBounds="True">
+
+
+            <Grid>
+                <!--Title-->
+
+                <!--Ellipses-->
+                <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="50 0 0 -200" Opacity="0.6"/>
+                <Ellipse Width="300" Height="300" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="-450 0 0 30" Opacity="0.3"/>
+                <Ellipse Width="400" Height="400" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="-320 0 0 -120" Opacity="0.3"/>
+                <Ellipse Width="250" Height="250" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="-380 0 0 -120"/>
+                <Ellipse Width="400" Height="400" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="280 0 0 -70" Opacity="0.8"/>
+                <StackPanel Margin="0 -80 0 0" VerticalAlignment="Center">
+
+                    <TextBlock Text="Student Menu" FontSize="46" FontWeight="Light" Foreground="#ffffff" TextAlignment="Center" Margin="10 10 10 30"/>
+                    <StackPanel  HorizontalAlignment="Center">
+                        <Ellipse Width="120" Height="120" Style="{StaticResource EllipseStyle}" Margin="20 10 20 10" Stroke="White" StrokeThickness="5" >
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding  ImagePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            </Ellipse.Fill>
+
+                        </Ellipse>
+
+
+                        <Button Style="{StaticResource circleButton3}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding editPhotoCommand}" CommandParameter="{Binding StudentId}" Height="31" Width="30">
+                            <Button.Content>
+                                <controls:PackIcon Kind="Edit" Height="22" Width="23" />
+
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+
+                    <TextBlock Text="{Binding Name}" FontSize="30" FontWeight="Bold" Foreground="#ffffff" TextAlignment="Center" Margin="10"/>
+
+                    <Button Content="Change Password" Width="200" Command="{Binding changePasswordCommand}" CommandParameter="{Binding Student}"></Button>
+
+
+                </StackPanel>
+
+
+
+            </Grid>
+        </Border>
+
+        <!--Right Section-->
+
+
+
+        <Border Grid.Column="1" Background="#ffffff" CornerRadius="0 10 10 0" >
+
+
+
+            <!--Inputs-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="0 120 0 0" VerticalAlignment="Center">
+
+
+
+
+                    <TextBlock Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="Studnet Name : "  FontSize="22"  />
+                    <TextBlock Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="Reg No : "  FontSize="22"  />
+                    <TextBlock Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="Age : "  FontSize="22"  />
+                    <TextBlock Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="Enrolled Course : "  FontSize="22"   />
+                    <TextBlock Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="GPA : "  FontSize="22"   />
+
+
+
+
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="1" Margin="0 120 0 0" VerticalAlignment="Center">
+                    <TextBlock  Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  FontSize="22" />
+                    <TextBlock  Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="{Binding RegNo,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"    FontSize="22"   />
+                    <TextBlock  Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="{Binding Age,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   FontSize="22"  />
+                    <TextBlock  Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="{Binding SelectedCourseName,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  FontSize="22"   />
+                    <TextBlock  Padding="5" Height="60" Width="260" Margin="15,-2,12,-2" Text="{Binding Gpa,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   FontSize="22"   />
+
+
+
+                </StackPanel >
+
+
+
+
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal"  Margin="70,40,0,0" HorizontalAlignment="Left">
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="5" Content="Edit Student" Command="{Binding editStudentCommand}" CommandParameter="{Binding Student}"  Foreground="#ffffff" FontSize="18"  Height="45" Width="200" Margin="0 10 10 10"/>
+                    <Button Content="Calculate GPA" Command="{Binding calGpaCommand}" materialDesign:ButtonAssist.CornerRadius="5" FontSize="16" Height="45" Width="200" Margin="10 10 0 10"  CommandParameter="{Binding Student}" />
+                </StackPanel>
+
+                <Button  Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Top" Command="{Binding exitCommand}" Margin="10"  Style="{StaticResource circleButton2}"  ToolTip="Exit" Height="20" Width="20">
+                    <Button.Content >
+                        <controls:PackIcon Kind="Close" Height="15" Width="15"  RenderTransformOrigin="0.98,-10.733" />
+
+                    </Button.Content>
+                </Button>
+
+            </Grid>
+
+
+        </Border>
+
+
+
+    </Grid>
+</Window>

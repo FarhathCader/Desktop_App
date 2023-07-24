@@ -1,0 +1,394 @@
+﻿<Window x:Class="Group_Project.View.AdminMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Group_Project.View"
+        xmlns:VM="clr-namespace:Group_Project.ViewModel"
+        mc:Ignorable="d"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+           xmlns:controls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+       
+        xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+
+       
+
+        Height="800" Width="1000" WindowStartupLocation="CenterScreen"
+         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        
+        Background="Transparent" >
+        <Window.DataContext>
+            <VM:AdminMenuVM/>
+        </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="circleButton" >
+            <Setter Property="Margin" Value="10 "/>
+
+
+            <Setter Property="Foreground" Value= "#482880"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="#482880"
+                            BorderThickness = "2"
+                            CornerRadius="15"
+                            
+                        >
+                            <ContentPresenter HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="Background" Value="#c2c2c2"/>
+
+
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#dedede"/>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources
+        >
+
+    <Grid Margin="20">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="1" Opacity="0.4"/>
+        </Grid.Effect>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.4*"/>
+        </Grid.ColumnDefinitions>
+
+    
+        <Border Background= "#663399 "  CornerRadius="10 0 0 10" ClipToBounds="True" RenderTransformOrigin="0.495,0.643">
+           
+
+            <Grid>
+             
+                <StackPanel Margin="0 220 0 0" VerticalAlignment="Top">
+                    <TextBlock Text="Welcome Admin" FontSize="46" FontWeight="Light" Foreground="#ffffff" TextAlignment="Center"/>
+                    <TextBlock Text="Now You Can Create New Users" FontWeight="Light" FontSize="16" Foreground="#D1F2EB" TextAlignment="Center" />
+                    <TextBlock Text="and" FontWeight="Light" FontSize="16" Foreground="#D1F2EB" TextAlignment="Center" Margin="0 5 0 0"/>
+                    <TextBlock Text="Edit Exixting Users" FontWeight="Light" FontSize="16" Foreground="#D1F2EB" TextAlignment="Center" />
+
+                    <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
+
+                        <Button Width="150"   Content="Create New User"  Command="{Binding AddUserCommand}" Margin="20" Foreground="White"  Background="#341199"/>
+                        <Button Width="150"   Content="Manage Courses"  Command="{Binding AddCourseCommand}" Margin="20" Background="#341199"/>
+
+
+                    </StackPanel>
+                </StackPanel>
+
+           
+                <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="50 0 0 -200" Opacity="0.6"/>
+                <Ellipse Width="300" Height="300" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="-450 0 0 30" Opacity="0.3"/>
+                <Ellipse Width="400" Height="400" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="-320 0 0 -120" Opacity="0.3"/>
+                <Ellipse Width="250" Height="250" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="-380 0 0 -120"/>
+                <Ellipse Width="400" Height="400" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="280 0 0 -70" Opacity="0.8"/>
+
+                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+
+                    <Border Style="{StaticResource IconBorderStyle}" BorderThickness="5" BorderBrush="White" CornerRadius="90" Margin="130" Padding="15">
+                        <materialDesign:PackIcon Kind="Administrator"  Width="100"  Background="Transparent" Foreground="Wheat" Height="100" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+
+
+                    </Border>
+                </StackPanel>
+
+
+
+
+
+
+            </Grid>
+        </Border>
+
+        <!--Right Section-->
+        <Border CornerRadius="0 10 10 0" Background="White" Padding="20" Grid.Column="1">
+
+
+        <StackPanel>
+
+                <Button  HorizontalAlignment="Right"  VerticalAlignment="Top" Command="{Binding exitCommand}" Margin="10"  Style="{StaticResource circleButton2}"  ToolTip="Exit" Height="20" Width="20">
+                    <Button.Content >
+                        <controls:PackIcon Kind="Close" Height="15" Width="15"  RenderTransformOrigin="0.98,-10.733" />
+
+                    </Button.Content>
+                </Button>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10 5" Text="USERS LIST" HorizontalAlignment="Left" FontSize="18" FontWeight="Bold" />
+
+
+
+                </StackPanel>
+
+                <ListView ItemsSource="{Binding UserList , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      Height="600"
+                      Style="{StaticResource MaterialDesignListView }"
+                       Background="{DynamicResource MaterialDesignPaper}"
+          SelectionMode="Single">
+             
+
+
+                <ListView.View>
+                    <GridView >
+
+                            <GridViewColumn  Header="User Name" DisplayMemberBinding="{Binding UserName , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            <GridViewColumn Header="User Type" DisplayMemberBinding="{Binding UserType, UpdateSourceTrigger=PropertyChanged}" Width="auto"/>
+                       
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+
+
+                                        
+
+                                        <Button Style="{StaticResource circleButton}" Margin="10 5" Command="{Binding DataContext.editUserCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="40" Width="40">
+                                            <Button.Content>
+                                                <controls:PackIcon Kind="Edit" Height="15" Width="15" />
+
+                                            </Button.Content>
+                                        </Button>
+
+                                        <Button Style="{StaticResource circleButton}" Margin="10 5" Command="{Binding DataContext.removeUserCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="40" Width="40">
+                                            <Button.Content>
+                                                <controls:PackIcon Kind="Delete" Height="15" Width="15" />
+
+                                            </Button.Content>
+                                        </Button>
+        
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+
+
+        </StackPanel>
+     
+
+    </Border>
+
+
+
+    </Grid>
+
+    <!--<Border CornerRadius="20" Background="LightGray" Padding="20">
+
+
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="200" HorizontalAlignment="Left"   Margin="20" Content="Create New User"  Command="{Binding AddUserCommand}"/>
+                <Button  HorizontalAlignment="Right" Click="exitApp" Margin="450 0 0 0"  Style="{StaticResource circleButton}"  ToolTip="Exit" Height="40" Width="40">
+                    <Button.Content >
+                        <controls:PackIcon Kind="Close" Height="15" Width="15"  />
+
+                    </Button.Content>
+                </Button>
+
+
+            </StackPanel>
+            <TextBlock Text="USERS LIST" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic"/>
+
+            <ListView ItemsSource="{Binding UserList}"
+                      Height="600"
+                      Style="{StaticResource MaterialDesignListView}"
+                       Background="{DynamicResource MaterialDesignPaper}"
+          SelectionMode="Single">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
+                        <Setter Property="FocusVisualStyle" Value="{DynamicResource MaterialDesignDivider}" />
+                        <Setter Property="BorderThickness" Value="0,0,0,1" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+
+                <ListView.View>
+                    <GridView >
+
+                        <GridViewColumn  Header="User Name" DisplayMemberBinding="{Binding UserName}" />
+                        <GridViewColumn Header="User Type" DisplayMemberBinding="{Binding UserType}" Width="auto"/>
+                        <GridViewColumn Header="Total Students" DisplayMemberBinding="{Binding UserType}" Width="auto"/>
+                        <GridViewColumn Header="Total Courses" DisplayMemberBinding="{Binding UserType}"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+
+
+                                        
+
+                                        <Button Style="{StaticResource circleButton}" Margin="10 5" Command="{Binding DataContext.editUserCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="40" Width="40">
+                                            <Button.Content>
+                                                <controls:PackIcon Kind="Edit" Height="15" Width="15" />
+
+                                            </Button.Content>
+                                        </Button>
+
+                                        <Button Style="{StaticResource circleButton}" Margin="10 5" Command="{Binding DataContext.removeUserCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="40" Width="40">
+                                            <Button.Content>
+                                                <controls:PackIcon Kind="Delete" Height="15" Width="15" />
+
+                                            </Button.Content>
+                                        </Button>
+        
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+
+
+        </StackPanel>
+     
+
+    </Border>-->
+
+
+
+
+
+</Window>
+
+
+
+<!--<Border Grid.Column="1" Background="#ffffff" CornerRadius="0 10 10 0" >
+            <Grid>
+
+
+                -->
+<!--Inputs-->
+<!--
+                <StackPanel  VerticalAlignment="Center">
+                    <Border Margin="10" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDarkSeparatorBackground}" Width="300" Height="50" CornerRadius="5">
+
+                        <TextBox Padding="1"
+                                 Height="50"
+                                 Width="260"
+                                 Margin="5,-2,12,-2"
+                            materialDesign:HintAssist.Hint="Reg No"
+                            Text="{Binding RegNo}"
+                                 
+                            materialDesign:HintAssist.Foreground="Green"
+
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                    </Border >
+                    <Border Margin="10" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDarkSeparatorBackground}" Width="300" Height="50" CornerRadius="5">
+
+                        <TextBox Padding="1"
+                                 Height="50"
+                                 Width="260"
+                                 Margin="5,-2,12,-2"
+                            materialDesign:HintAssist.Hint="Name"
+                            Text="{Binding Name}"
+                                 
+                            materialDesign:HintAssist.Foreground="Green"
+
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                    </Border >
+
+                    <Border Margin="10" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDarkSeparatorBackground}" Width="300" Height="50" CornerRadius="5">
+
+                        <TextBox Padding="1"
+                                 Height="50"
+                                 Width="260"
+                                 Margin="5,-2,12,-2"
+                            materialDesign:HintAssist.Hint="Age"
+                            Text="{Binding Age}" 
+                                 
+                            materialDesign:HintAssist.Foreground="Green"
+
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                    </Border >
+                    <Border Margin="10" CornerRadius="5" Width="300" Height="50" Padding="2" BorderBrush="{StaticResource AttentionToActionBrush}" BorderThickness="1">
+
+                        <ComboBox  materialDesign:HintAssist.Hint="Course" Style="{StaticResource MaterialDesignComboBox}" ItemsSource="{Binding CoursesList}" Margin="0 10" Width="280" Height="40" DisplayMemberPath="CourseName" SelectedValue="{Binding SelectedCourse}" >
+
+                        </ComboBox>
+
+
+                    </Border>
+
+
+
+                    <StackPanel Orientation="Horizontal"  Margin="20" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="5" Content="Save" Command="{Binding saveCommand}"  Foreground="#ffffff" FontSize="18"  Height="45" Width="120" Margin="0 10 10 10"/>
+                        <Button Content="Cancel" Command="{Binding CancelCommand}" materialDesign:ButtonAssist.CornerRadius="5" FontSize="16" Height="45" Width="120" Margin="10 10 0 10" />
+                    </StackPanel>
+
+
+
+
+
+
+
+                </StackPanel>
+            </Grid>
+        </Border>-->
+
+<!--
+    <ListView ItemsSource="{Binding UserList}" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="User Name" DisplayMemberBinding="{Binding UserName}"/>
+                            <GridViewColumn Header="User Type" DisplayMemberBinding="{Binding UserType}"/>
+                            <GridViewColumn Header="Total Courses" DisplayMemberBinding="{Binding UserType}"/>
+                            <GridViewColumn Header="Total Studnets" DisplayMemberBinding="{Binding UserType}"/>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Command="{Binding editUserCommand}">
+                                                <Icon:PackIconMaterial Kind="PencilOutline"/>
+                                            </Button>
+                                            <Button Margin="5 0 0 0"   Command="{Binding DataContext.removeUserCommand,  RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline" />
+                                            </Button>
+                                        </StackPanel>
+
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+
+                        </GridView>
+                    </ListView.View>
+                    </ListView>
+                    -->

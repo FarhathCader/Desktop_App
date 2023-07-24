@@ -1,0 +1,123 @@
+﻿<Window x:Class="Group_Project.View.GPACalculationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Group_Project.View"
+        mc:Ignorable="d"
+        xmlns:controls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        Title="GPACalculationWindow" Height="750" Width="500"
+          WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent">
+
+
+    <Grid Margin="20">
+
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="1" Opacity="0.4"/>
+        </Grid.Effect>
+
+        <Border Background= "#663399 "  CornerRadius="10" ClipToBounds="True">
+
+
+            <Grid>
+
+                <Button  HorizontalAlignment="Right"  VerticalAlignment="Top" Command="{Binding exitCommand}" Margin="10"  Style="{StaticResource circleButton3}"  ToolTip="Exit" Height="20" Width="20">
+                    <Button.Content >
+                        <controls:PackIcon Kind="Close" Height="15" Width="15" Foreground="White" RenderTransformOrigin="0.98,-10.733" />
+
+                    </Button.Content>
+                </Button>
+
+                <!--Ellipses-->
+                <Ellipse Height="420" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="225,0,-165,-211" Opacity="0.4"/>
+                <Ellipse Width="400" Height="400" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="-233,0,283,-191" Opacity="0.3"/>
+
+                <Ellipse Height="420" VerticalAlignment="Top" Fill="#8c14fc " Margin="30,515,30,0" Opacity="0.4"/>
+                <Ellipse Height="420" VerticalAlignment="Top" Fill="#8c14fc " Margin="-112,470,172,0" Opacity="0.2"/>
+                <Ellipse Height="420" VerticalAlignment="Top" Fill="#8c14fc " Margin="10,431,50,0" Opacity="0.4"/>
+                <Ellipse Height="420" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="167,0,-107,-191" Opacity="0.4"/>
+                <Ellipse Height="420" VerticalAlignment="Bottom" Fill="#8c14fc " Margin="-233,0,293,-172" Opacity="0.4"/>
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Margin="0 40 0 10">
+                        <StackPanel Orientation="Horizontal" Margin="80 0">
+                            <TextBlock Text="Student Name :" Foreground="White" FontSize="16" Margin="10"/>
+                            <TextBlock Text="{Binding StudentName}" Foreground="White" FontSize="16" Margin="20 10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="80 0">
+                            <TextBlock Text="Enrolled Course :" Foreground="White" FontSize="16" Margin="10"/>
+                            <TextBlock Text="{Binding CourseName}" Foreground="White" FontSize="16" Margin="10"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Border Grid.Row="1" Background="White" Margin="20" BorderThickness="2" CornerRadius="10" BorderBrush="Black">
+                        <ListView ItemsSource="{Binding CourseModules}" Height="350">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Module Name">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border >
+
+
+                                                    <TextBlock Text="{Binding ModuleName}"/>
+
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Grade">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border>
+
+                                                    <ComboBox ItemsSource="{Binding Grades}" SelectedItem="{Binding Result}">
+
+                                                    </ComboBox>
+
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+                    <Button Grid.Row="2" Content="Calculate GPA"  Width="160" Margin="20" Command="{Binding calculateGPACommand}"/>
+
+
+
+                </Grid>
+
+
+
+
+
+                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="0 0 0 -40">
+
+                    <Border Style="{StaticResource IconBorderStyle}" BorderThickness="5" BorderBrush="White" CornerRadius="90" Margin="60" Padding="15">
+                        <materialDesign:PackIcon Kind="Abc"  Width="60"  Background="Transparent" Foreground="Wheat" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+
+
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+
+    </Grid>
+</Window>

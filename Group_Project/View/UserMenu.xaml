@@ -1,0 +1,291 @@
+﻿<Window x:Class="Group_Project.View.UserMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Group_Project.View"
+        xmlns:VM="clr-namespace:Group_Project.ViewModel"
+           xmlns:controls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="UserMenu" Height="700" Width="1300"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None">
+
+
+
+
+    <Grid Background="#663399 " ClipToBounds="True">
+        <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="788,0,-88,292" Opacity="0.6"/>
+        <Ellipse Width="300" Height="300" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="-450 0 0 180" Opacity="0.3"/>
+        <Ellipse Width="300" Height="300" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="-450 0 0 180" Opacity="0.3"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="753,0,-53,10" Opacity="0.6"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Top" Fill="#8c14fc" Margin="350,-96,350,0" Opacity="0.6"/>
+        <Ellipse Width="300" Height="300" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="171,0,729,380" Opacity="0.3"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="538,0,162,330" Opacity="0.6"/>
+        <Ellipse Height="412" VerticalAlignment="Top" Fill="#8c14fc" Margin="-115,-96,940,0" Opacity="0.6"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Top" Fill="#8c14fc" Margin="0,-196,700,0" Opacity="0.6"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="500,0,200,-208" Opacity="0.6"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="125,0,575,-26" Opacity="0.6"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="-115,0,815,-276" Opacity="0.6"/>
+        <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#8c14fc" Margin="-334,0,1034,0" Opacity="0.6"/>
+        <Border  >
+
+
+
+            <StackPanel>
+                <Button  HorizontalAlignment="Right"  VerticalAlignment="Top" Command="{Binding exitCommand}" Margin="10"  Style="{StaticResource circleButton3}"  ToolTip="Exit" Height="20" Width="20">
+                    <Button.Content >
+                        <controls:PackIcon Kind="Close" Height="15" Width="15"  RenderTransformOrigin="0.98,-10.733" />
+
+                    </Button.Content>
+                </Button>
+
+                <Border  Height="140" >
+                    <StackPanel Margin="25" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource MaterialDesignDarkSeparatorBackground}"  Height="60" >
+                  
+                        <TextBlock Text="Welcome" Foreground="White"  FontWeight="Bold" FontSize="28" Style="{StaticResource MaterialDesignButtonTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Margin="10" Text="{Binding UserName}" FontSize="28" Foreground="White"  FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.3*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Border Background="White" Margin="10" CornerRadius="10">
+                        <Grid Grid.Column="0" Margin="20" Background="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Students List" HorizontalAlignment="Left" Margin="10" FontSize="24"/>
+                                <Button Content="Register New Student" Command="{Binding registerStudentCommand}" Margin="300 0 0 0 " Width="180" Style="{StaticResource MaterialDesignRaisedButton}"/>
+
+                            </StackPanel>
+                            <Border 
+                Grid.Row="1"
+                CornerRadius="10" 
+                    Padding="10"
+                    BorderBrush="Black"
+                    BorderThickness="2"
+                    >
+                                <ListView ItemsSource="{Binding StudentList , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                          Height="380"
+                                   
+                             Style="{StaticResource MaterialDesignListView}"
+                       Background="{DynamicResource MaterialDesignPaper}"
+          SelectionMode="Single">
+
+
+                                    <ListView.View>
+                                        <GridView>
+
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Ellipse Height="30" Width="30" Style="{StaticResource GridEllipseStyle}" Margin="2">
+                                                            <Ellipse.Fill>
+                                                                <ImageBrush ImageSource="{Binding ImagePath}"/>
+                                                            </Ellipse.Fill>
+                                                        </Ellipse>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                  
+
+                                     
+
+                                            <GridViewColumn Header="Reg No" Width="auto">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding RegNo , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Name" Width="auto">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Name , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Age" Width="auto">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Age , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+
+                                            <GridViewColumn Header="Course" Width="auto">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding SelectedCourseName , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+
+
+
+
+                                                            <Button Style="{StaticResource circleButton2}" Margin="10 5" Command="{Binding DataContext.editStudentCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="30" Width="30">
+                                                                <Button.Content>
+                                                                    <controls:PackIcon Kind="Edit" Height="15" Width="15" />
+
+                                                                </Button.Content>
+                                                            </Button>
+
+                                                            <Button Style="{StaticResource circleButton2}" Margin="10 5" Command="{Binding DataContext.removeStudentCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="30" Width="30">
+                                                                <Button.Content>
+                                                                    <controls:PackIcon Kind="Delete" Height="15" Width="15" />
+
+                                                                </Button.Content>
+                                                            </Button>
+
+
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Border>
+                        </Grid>
+
+                    </Border>
+
+
+                    <Border Grid.Column="1" Margin="10" Background="White"  CornerRadius="10">
+                        <Grid Grid.Column="1" Margin="20" Background="White">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Course List" HorizontalAlignment="Left" Margin="10" FontSize="24"/>
+
+                                <Button HorizontalAlignment="Right" Content="Add New Course" Command="{Binding registerCourseCommand}"  Style="{StaticResource MaterialDesignRaisedButton}" Margin="190 0 0 0" Width="140"/>
+
+                            </StackPanel>
+
+
+                            <Border Grid.Row="1" Padding="10"
+                    BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="10">
+                                <ListView  Grid.Column="1" ItemsSource="{Binding CourseList , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Height="380"    
+                      Style="{StaticResource MaterialDesignListView}"
+                       Background="{DynamicResource MaterialDesignPaper}"
+          SelectionMode="Single">
+
+
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Code" Width="auto">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Code , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Course" Width="auto">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding CourseName , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+
+
+
+
+                                                            <Button Style="{StaticResource circleButton2}" Margin="10 5" Command="{Binding DataContext.editCourseCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="30" Width="30">
+                                                                <Button.Content>
+                                                                    <controls:PackIcon Kind="Edit" Height="15" Width="15" />
+
+                                                                </Button.Content>
+                                                            </Button>
+
+                                                            <Button Style="{StaticResource circleButton2}" Margin="10 5" Command="{Binding DataContext.removeCourseCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Height="30" Width="30">
+                                                                <Button.Content>
+                                                                    <controls:PackIcon Kind="Delete" Height="15" Width="15" />
+
+                                                                </Button.Content>
+                                                            </Button>
+                                                            <Button   Style="{StaticResource MaterialDesignRaisedButton}" Content="Add Modules" Command="{Binding DataContext.addModuleCommand,  RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}"  Foreground="#ffffff" Margin="5" />
+
+
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+
+
+                                            </GridViewColumn>
+
+
+
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+
+                            </Border>
+
+                        </Grid>
+
+                    </Border>
+
+
+
+
+                </Grid>
+            </StackPanel>
+
+
+
+        </Border>
+
+
+
+
+    </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</Window>
+
+ 

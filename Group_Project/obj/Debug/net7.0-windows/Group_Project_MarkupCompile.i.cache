@@ -1,0 +1,20 @@
+﻿Group_Project
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\Desktop\wpf projects\Final\Group_Project\obj\Debug\net7.0-windows\
+Group_Project
+none
+false
+TRACE;DEBUG;NET;NET7_0;NETCOREAPP
+D:\Desktop\wpf projects\Final\Group_Project\App.xaml
+12-323147183
+
+402053795008
+256-1597285863
+View\AddModuleWindow.xaml;View\AddStudentWindow.xaml;View\AddUserWindow.xaml;View\AdminCourseMenu.xaml;View\AdminMenu.xaml;View\DisplayGPA.xaml;View\EditCourseWindow.xaml;View\GPACalculationWindow.xaml;View\MainWindow.xaml;View\StudentMenuWindow.xaml;View\StudentPasswordChangeWindow.xaml;View\UserMenu.xaml;
+
+False
+

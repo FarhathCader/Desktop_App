@@ -1,0 +1,226 @@
+﻿<Window x:Class="Group_Project.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Group_Project.View"
+        xmlns:VM="clr-namespace:Group_Project.ViewModel"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        xmlns:controls="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+
+       
+xmlns:materialDesignConverters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+
+       
+        
+        Title="MainWindow" Height="650" Width="450"
+        AllowsTransparency="True"
+       
+        mc:Ignorable="d"
+       
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        Style="{StaticResource MaterialDesignWindow}"
+        
+        >
+
+
+
+    <Window.DataContext>
+        <VM:MainWindowVM/>
+    </Window.DataContext>
+
+
+
+
+
+
+
+
+    <!--<materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">-->
+    <!--<materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">-->
+    <Grid>
+
+
+
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center"  >
+
+            <Border Background="WhiteSmoke"
+
+CornerRadius="5">
+                <StackPanel Height="650" Width="400">
+
+                  
+
+                    <StackPanel Margin="0 20">
+                        <Button  HorizontalAlignment="Right" Click="exitApp" Margin="20 0"  Style="{StaticResource circleButton}"  ToolTip="Exit" Height="20" Width="20">
+                            <Button.Content >
+                                <controls:PackIcon Kind="Close" Height="15" Width="15" Foreground="Red" />
+
+                            </Button.Content>
+                        </Button>
+                       
+
+
+                        <StackPanel >
+                            <StackPanel VerticalAlignment="top" HorizontalAlignment="Center"  >
+
+                                <Border Style="{StaticResource IconBorderStyle}" BorderThickness="5" BorderBrush="Purple" CornerRadius="90"  Margin="0 60 0 0" Padding="15">
+                                    <materialDesign:PackIcon Kind="Login"  Width="50"  Background="Transparent" Foreground="Purple" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+
+
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Margin="0 30 0 20"
+            Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+            FontSize="18"
+            HorizontalAlignment="Center"
+            Text="Log in to Your Account">
+                            </TextBlock>
+                            <Border Margin="10" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDarkSeparatorBackground}" Width="300" Height="50" CornerRadius="5">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Border  Width="40" Height="40" >
+                                        <materialDesign:PackIcon Kind="Account"  Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    </Border>
+                                    <TextBox Padding="1"
+                                 Height="50"
+                                 Width="260"
+                                 Margin="5,-2,12,-2"
+                            materialDesign:HintAssist.Hint="Username"
+                                 
+                            materialDesign:HintAssist.Foreground="Green"
+                                         Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         
+
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+
+
+                                </StackPanel>
+
+                            </Border >
+                            <Border BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDarkSeparatorBackground}" Width="300" Height="50" CornerRadius="5" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Border  Width="40" Height="40" >
+                                        <materialDesign:PackIcon Kind="Lock"  Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    </Border>
+                                    <PasswordBox
+                                    PasswordChanged="PasswordBox_PasswordChanged"
+                                     x:Name="PasswordBox"
+                            materialDesign:HintAssist.Hint="Password"
+                            materialDesign:HintAssist.Foreground="Green"
+                            
+                            Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                            Width="260"
+                            Margin="5,-2,12,-2"
+                                
+                                Height="50"/>
+
+
+
+                                </StackPanel>
+
+                            </Border>
+
+                            <StackPanel Orientation="Horizontal" Margin="0 15" HorizontalAlignment="Center">
+                                <Button materialDesign:ButtonAssist.CornerRadius="5" Content="Admin" Style="{DynamicResource MaterialDesignRaisedButton}"  Width="100" Height="40" FontSize="16" HorizontalAlignment="Center" Margin="0 10 10 10" Command= "{Binding adminLoginCommand }"/>
+                                <Button materialDesign:ButtonAssist.CornerRadius="5" Content="User" Style="{DynamicResource MaterialDesignRaisedButton}"  Width="100" Height="40" FontSize="16" HorizontalAlignment="Center" Margin="10 10" Command= "{Binding userLoginCommand }"/>
+                                <Button Content="Student" Command="{Binding studentLoginCommand}" Style="{DynamicResource MaterialDesignRaisedButton}"  Width="100" Height="40" FontSize="16" HorizontalAlignment="Center" Margin="10 10" />
+
+                            </StackPanel>
+                            <TextBlock Margin="0 30 0 0" Text="{Binding ErrorMessage, Mode=TwoWay}" Foreground="Black" HorizontalAlignment="Center"  Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+
+
+                        </StackPanel>
+
+
+                        <Button HorizontalAlignment="Center" Click="Button_Click" Margin="80 10" Style="{StaticResource circleButton}"  ToolTip="Forgot Admin Creditanals">
+                            <Button.Content>
+                                <controls:PackIcon Kind="QuestionMark" Height="15" Width="15" Foreground="red"/>
+
+                            </Button.Content>
+                        </Button>
+
+
+
+
+
+
+
+                    </StackPanel>
+
+
+
+
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+    </Grid>
+
+
+    <!--</materialDesign:DialogHost>
+    </materialDesign:Card>-->
+</Window>
+
+
+<!--     <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
+    <StackPanel>
+
+
+
+
+        <Button x:Name="Btn_Exit" Margin="-10" ToolTip="Close Application" Content="Exit Application" Click="exitApp"/>
+
+    </StackPanel>
+    </materialDesign:PopupBox>
+    <TextBlock  Grid.Row="1" Text="Log in to your account"
+           FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/Roboto-Regular.ttf#Roboto"
+           FontSize="18"
+           FontWeight="Bold"
+           Foreground="{StaticResource MaterialDesignBody}"
+           HorizontalAlignment="Center"
+           Margin="125" />
+    <TextBlock  Grid.Row="1" Text="Welcome"
+           FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/Roboto-Regular.ttf#Roboto"
+           FontSize="38"
+           FontWeight="Bold"
+           Foreground="{StaticResource MaterialDesignBody}"
+           HorizontalAlignment="Center"
+           Margin="60" />
+
+    <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0 160 0 80">
+        <StackPanel Orientation="Horizontal">
+            <Border Grid.Column="0" Style="{StaticResource IconBorderStyle}" Width="40" Height="40" >
+                <materialDesign:PackIcon Kind="Account" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            </Border>
+            <TextBox materialDesign:HintAssist.Hint="Username" Text="{Binding UserName}"  Width="250" Height="40" FontSize="16" Margin=" 10" />
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Border Grid.Column="0" Style="{StaticResource IconBorderStyle}" Width="40" Height="40" >
+                <iconPacks:PackIconMaterial Kind="Lock" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <PasswordBox materialDesign:HintAssist.Hint="Password"  x:Name="PasswordBox" Width="250" Height="40" FontSize="16" Margin="10 10" PasswordChanged="PasswordBox_PasswordChanged"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 25">
+            <Button Content="Admin" Style="{DynamicResource MaterialDesignRaisedButton}"  Width="100" Height="40" FontSize="16" HorizontalAlignment="Center" Margin="0 10 10 10" Command= "{Binding adminLoginCommand }"/>
+            <Button Content="User" Style="{DynamicResource MaterialDesignRaisedButton}"  Width="100" Height="40" FontSize="16" HorizontalAlignment="Center" Margin="10 10" Command= "{Binding userLoginCommand }"/>
+            <Button Content="Student" Style="{DynamicResource MaterialDesignRaisedButton}"  Width="100" Height="40" FontSize="16" HorizontalAlignment="Center" Margin="10 10" />
+
+        </StackPanel>
+        <TextBlock Margin="0 30 0 0" Text="{Binding ErrorMessage, Mode=TwoWay}" Foreground="Black" HorizontalAlignment="Center" />
+    </StackPanel>
+    -->
